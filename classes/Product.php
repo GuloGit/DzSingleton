@@ -7,9 +7,13 @@ abstract class Product
 
     public function __construct($name, $price, $quantity)
     {
+        if($name!==""&&$price>0&&$quantity>0 ){
         $this->setName($name);
         $this->setPrice($price);
-        $this->setQuantity($quantity);
+        $this->setQuantity($quantity);}
+        else{
+            throw new Exception ("Введите корректные значения");
+        }
     }
     public function setName($name)
     {

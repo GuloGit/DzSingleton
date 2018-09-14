@@ -2,10 +2,26 @@
 class SessionStorage implements IStorage
 {
     protected $key = "cartItemsList";
+    protected static $instance = null;
 
-    public function __construct ()
+    protected function __construct ()
     {
         session_start();
+    }
+
+    protected function __clone()
+    {
+    }
+    protected function __wakeup()
+    {
+    }
+    public static function getInstance()
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
     }
 
     public function save($value)
@@ -31,4 +47,10 @@ class SessionStorage implements IStorage
         }
 
     }
+    public function destroy()
+    {
+        unset($_SESSION);
+        session_destroy();
+    }
+
 }

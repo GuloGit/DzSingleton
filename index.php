@@ -1,13 +1,16 @@
 <?php
 require_once "./vendor/autoload.php";
-$sStorage = new SessionStorage();
+$sStorage = SessionStorage::getInstance();
 
 $myCart = new Cart($sStorage);
-
-$book1 = new Book("Учим php", 100, 50);
-$book2 = new Book("Не забываем JS и HTML", 30, 40);
-$nb = new Notebook("lenovo", 30, 40);
-$rom = new Alcohol("ром", 1000, 200);
+try {
+    $book1 = new Book("Учим php", 100, 50);
+    $book2 = new Book("Не забываем JS и HTML", 30, 40);
+    $nb = new Notebook("lenovo", 30, 40);
+    $rom = new Alcohol("ром", 1000, 200);
+}catch (Exception $e) {
+    echo "Поймано исключение: " . $e->getMessage();
+}
 
 try
 {
